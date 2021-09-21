@@ -1,0 +1,21 @@
+using System;
+using System.Linq;
+public class Solution 
+{
+    public long solution(int n, int[] times) 
+    {
+        long low = 0;
+        long high = (long)times.Max() * n;
+        while (low != high)
+        {
+            long mid = (low + high) / 2;
+            long canDoIt = times.Select(x => mid / x).Sum();
+            if (canDoIt >= n)
+                high = mid;
+            else
+                low = mid + 1;
+        }
+
+        return low;
+    }
+}
